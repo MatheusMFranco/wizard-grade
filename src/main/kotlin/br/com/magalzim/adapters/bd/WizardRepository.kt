@@ -16,10 +16,11 @@ class WizardRepository(
         jdbcTemplate.query("SELECT * FROM wizard WHERE house = ?", WizardMapper(), house)
 
     override fun save(wizard: Wizard) = jdbcTemplate.update(
-        "INSERT INTO wizard(name, house, is_student) VALUES(?,?,?)",
+        "INSERT INTO wizard(name, house, is_student, id) VALUES(?,?,?,?)",
         wizard.name,
         wizard.house,
-        wizard.isStudent
+        wizard.isStudent,
+        wizard.id
     )
 
     override fun update(wizard: Wizard, id: String) = jdbcTemplate.update(

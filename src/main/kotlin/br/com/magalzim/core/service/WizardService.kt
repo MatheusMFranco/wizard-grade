@@ -33,8 +33,7 @@ internal class WizardService(
     }
 
     override suspend fun findByHouse(house: String) = coroutineScope {
-        wizardHttpService
-            .getByHouse(house)
-            .let(WizardToMuggleConverter::toMuggle)
+        val response = wizardHttpService.getByHouse(house)
+        WizardToMuggleConverter.toMuggle(response)
     }
 }

@@ -14,13 +14,16 @@ class WizardResource(
     @GetMapping
     fun list(@RequestParam(required = false) house: String?) = wizardService.list(house)
 
+    @GetMapping("/{id}")
+    fun findById(@PathVariable id: String) = wizardService.findById(id)
+
     @PostMapping
     fun save(@RequestBody wizard: Wizard) = wizardService.save(wizard)
 
     @PutMapping("/{id}")
     fun update(@RequestBody wizard: Wizard, @PathVariable id: String) = wizardService.update(wizard, id)
 
-    @GetMapping("/{house}")
+    @GetMapping("/house/{house}")
     fun getByImdb(@PathVariable house: String) = runBlocking {
         wizardService.findByHouse(house.houseFromPortuguese())
     }
